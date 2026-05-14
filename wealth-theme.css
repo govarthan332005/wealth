@@ -1,0 +1,119 @@
+/* ====================================================================
+   GROWVEST — Theme overrides (kept minimal; all base styles in style.css)
+   v16.0 — Aurora Mint Fresh Design
+   ==================================================================== */
+
+/* This file intentionally lightweight — the new theme system lives in style.css
+   Any future student-targeted A/B tweaks can be appended here without
+   touching the core style.css.
+*/
+
+/* Smooth entry animations for all main sections */
+.user-main > div > section {
+  animation: sectionFadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.user-main > div > section:nth-child(2) { animation-delay: 0.06s; }
+.user-main > div > section:nth-child(3) { animation-delay: 0.12s; }
+.user-main > div > section:nth-child(4) { animation-delay: 0.18s; }
+.user-main > div > section:nth-child(5) { animation-delay: 0.24s; }
+.user-main > div > section:nth-child(6) { animation-delay: 0.30s; }
+.user-main > div > section:nth-child(7) { animation-delay: 0.36s; }
+
+@keyframes sectionFadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Plan card stagger */
+.plans-grid .plan-card {
+  animation: planFade 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.plans-grid .plan-card:nth-child(1) { animation-delay: 0.05s; }
+.plans-grid .plan-card:nth-child(2) { animation-delay: 0.10s; }
+.plans-grid .plan-card:nth-child(3) { animation-delay: 0.15s; }
+.plans-grid .plan-card:nth-child(4) { animation-delay: 0.20s; }
+.plans-grid .plan-card:nth-child(5) { animation-delay: 0.25s; }
+.plans-grid .plan-card:nth-child(6) { animation-delay: 0.30s; }
+@keyframes planFade {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Ripple effect for interactive elements */
+.btn-primary, .wallet-btn, .qa-btn, .plan-invest-btn,
+.claim-btn, .nav-item, .settings-item, .icon-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Scrollbar styling */
+.modal-body::-webkit-scrollbar,
+.user-main::-webkit-scrollbar { width: 4px; }
+.modal-body::-webkit-scrollbar-track,
+.user-main::-webkit-scrollbar-track { background: transparent; }
+.modal-body::-webkit-scrollbar-thumb,
+.user-main::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.25);
+  border-radius: 4px;
+}
+.modal-body::-webkit-scrollbar-thumb:hover,
+.user-main::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.45);
+}
+
+/* Selection color */
+::selection {
+  background: rgba(99, 102, 241, 0.25);
+  color: #0F172A;
+}
+
+/* Focus accessible outline */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible {
+  outline: 2px solid #6366F1;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skeleton loading shimmer */
+.skeleton {
+  background: linear-gradient(90deg, #F1F5F9 0%, #E2E8F0 50%, #F1F5F9 100%);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.4s ease-in-out infinite;
+  border-radius: 8px;
+}
+@keyframes skeletonShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Make sure invisible-text bugs are dead: any rule that mistakenly sets
+   the same color as background gets a safe fallback. */
+.welcome-banner h2,
+.section-header h3,
+.plan-name,
+.txn-type, .inv-name,
+.bonus-mini-title,
+.settings-item .si-left span,
+.help-item h4, .legal-text h4 {
+  color: var(--text) !important;
+}
+
+/* Force-readable money on wallet cards (was washing out gold-on-gold) */
+.wallet-card .wallet-amount,
+.wallet-card .stat-val,
+.referral-card .ref-stat-val,
+.trust-hero h2,
+.share-hero-title,
+.hero-title {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+}
+
+/* Ensure modal close icon never inherits transparent text from gradients */
+.modal-close i, .hero-close i {
+  color: inherit !important;
+  -webkit-text-fill-color: currentColor !important;
+}
